@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Http\Resources\ProductResource;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Services\ProductService;
@@ -16,13 +15,13 @@ class ProductSearch extends Component
     public $name = '';
     public $categories = [];
     public $brands = [];
-    public $page = 1; // Adiciona a propriedade page
+    public $page = 1;
 
-    public $per_page = 3; // Opcional: define o padrão de itens por página
+    public $per_page = 3;
 
-    public $allBrands = []; // Torna pública para uso na view
-    public $allCategories = []; // Torna pública para uso na view
-    
+    public $allBrands = [];
+    public $allCategories = [];
+
     protected $queryString = [
         'name' => ['except' => ''],
         'categories' => ['except' => []],
@@ -62,7 +61,6 @@ class ProductSearch extends Component
         ];
     }
 
-    // Remova o construtor e use o método mount
     public function mount()
     {
         $this->allBrands = Brand::orderBy('description')->get();
