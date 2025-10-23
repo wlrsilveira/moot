@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'brand_id' => Brand::factory(),
             'category_id' => Category::factory(),
             'price' => fake()->randomFloat(2, 10, 1000),
-            'photo_url' => fake()->imageUrl(640, 480, 'products', true),
+            'photo' => fake()->imageUrl(640, 480, 'products', true),
         ];
     }
 }
