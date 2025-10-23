@@ -8,4 +8,22 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: '0.0.0.0',
+        port: 5173,
+        hmr: {
+            host: 'localhost',
+            port: 5173,
+        },
+        watch: {
+            usePolling: true,
+        },
+    },
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: undefined,
+            },
+        },
+    },
 });

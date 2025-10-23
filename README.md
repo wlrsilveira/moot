@@ -5,12 +5,14 @@ O ambiente está containerizado com **Docker**, incluindo PostgreSQL e Redis.
 
 ## Funcionalidades
 
-- Busca de produtos com filtros combinados:
-  - Nome do produto
-  - Categoria (possível selecionar múltiplas)
-  - Marca (possível selecionar múltiplas)
-- Persistência dos filtros após refresh da página
-- Possibilidade de limpar todos os filtros
+- ✅ **Busca por nome do produto** - Campo de texto com debounce para busca em tempo real
+- ✅ **Filtros por múltiplas categorias** - Checkboxes para selecionar várias categorias simultaneamente
+- ✅ **Filtros por múltiplas marcas** - Checkboxes para selecionar várias marcas simultaneamente
+- ✅ **Persistência de filtros após refresh** - Filtros mantidos na URL via query string
+- ✅ **Limpar filtros** - Botão para resetar todos os filtros de uma vez
+- Paginação de resultados (12 produtos por página)
+- Indicadores visuais de filtros ativos
+- Interface responsiva com Tailwind CSS
 - Testes automatizados usando **Laravel Feature + Livewire**
 
 ## Requisitos
@@ -81,11 +83,11 @@ docker exec -it moot-php-fpm php artisan test
 ```
 
 Os testes cobrem:
-- Busca por nome do produto
-- Filtros por múltiplas categorias
-- Filtros por múltiplas marcas
-- Persistência de filtros após refresh
-- Limpar filtros
+- ✅ Busca por nome do produto
+- ✅ Filtros por múltiplas categorias
+- ✅ Filtros por múltiplas marcas
+- ✅ Persistência de filtros após refresh
+- ✅ Limpar filtros
 
 ## Observações
 
