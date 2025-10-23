@@ -7,9 +7,9 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Brand>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-class BrandFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -23,6 +23,7 @@ class BrandFactory extends Factory
             'brand_id' => Brand::factory(),
             'category_id' => Category::factory(),
             'price' => fake()->randomFloat(2, 10, 1000),
+            'photo_url' => fake()->imageUrl(640, 480, 'products', true),
         ];
     }
 }
