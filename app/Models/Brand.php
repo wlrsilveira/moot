@@ -10,4 +10,9 @@ class Brand extends Model
     use HasFactory;
     
     protected $fillable = ['description'];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
