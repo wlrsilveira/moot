@@ -30,6 +30,8 @@ services:
     volumes:
       - .:/application
       - ./php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
+    ports:
+      - "5173:5173"
     depends_on:
       - postgres
       - redis
