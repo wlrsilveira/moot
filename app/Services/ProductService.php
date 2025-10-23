@@ -8,9 +8,9 @@ class ProductService
 {
     public function search(array $filters, int $perPage = 15, int $page = 1)
     {
-        return Product::query()
+        return Product::with(['category', 'brand'])
             ->when(isset($filters['name']), function ($query) use ($filters) {
-                $query->where('name', 'like', '%' . $filters['name'] . '%');
+                $query->whereRaw('LOWER(name) LIKE ?', ['%' . mb_strtolower($filters['name']) . '%']);
             })
             ->when(isset($filters['categories']), function ($query) use ($filters) {
                 $query->whereIn('category_id', $filters['categories']);
