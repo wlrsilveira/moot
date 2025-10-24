@@ -17,7 +17,7 @@ O ambiente está containerizado com **Docker**, incluindo PostgreSQL e Redis.
 
 ## Requisitos
 
-- Docker e Docker Compose
+- Docker e Docker Compose 3.8
 - PHP >= 8.2
 - Composer
 - Node.js e npm/yarn
@@ -37,42 +37,52 @@ O ambiente está containerizado com **Docker**, incluindo PostgreSQL e Redis.
 git clone https://github.com/wlrsilveira/moot.git && cd moot
 ```
 
-2. **Copiar `.env`**
+2. **Ignorar versionamento de permissões de arquivos**
+```bash
+git config core.fileMode false
+```
+
+3. **Permissões na pasta storage**
+```bash
+chmod -R 777 storage/
+```
+
+4. **Copiar `.env`**
 ```bash
 cp .env.example .env
 ```
 
-3. **Rodar containers Docker**
+5. **Rodar containers Docker**
 ```bash
 docker-compose up -d
 ```
 
-4. **Instalar dependências PHP**
+6. **Instalar dependências PHP**
 ```bash
 docker exec -it moot-php-fpm composer install
 ```
 
-5. **Instalar dependências Node**
+7. **Instalar dependências Node**
 ```bash
 docker exec -it moot-php-fpm npm install
 ```
 
-6. **Gerar chave de aplicação**
+8. **Gerar chave de aplicação**
 ```bash
 docker exec -it moot-php-fpm php artisan key:generate
 ```
 
-7. **Rodar migrations e seeders**
-```bash
-docker exec -it moot-php-fpm php artisan migrate --seed
-```
-
-8. **Rodar build do Vite**
+9. **Rodar build do Vite**
 ```bash
 docker exec -it moot-php-fpm npm run build
 ```
 
-9. **Acessar aplicação**
+10. **Rodar migrations e seeders**
+```bash
+docker exec -it moot-php-fpm php artisan migrate --seed
+```
+
+11. **Acessar aplicação**
 - Abra no navegador: [http://localhost:8000](http://localhost:8000)
 
 ## Testes automatizados
@@ -82,10 +92,12 @@ Para rodar os testes:
 docker exec -it moot-php-fpm php artisan test
 ```
 
+Ao rodar os testes, o banco de dados é limpo por conta do RefreshDatabase, então, para rodar novamente no navegador
+rode os seeders novamente.
+
 Os testes cobrem:
-- ✅ Busca por nome do produto
-- ✅ Filtros por múltiplas categorias
-- ✅ Filtros por múltiplas marcas
+- ✅ Inicialização com todas as marcas e categorias
+- ✅ Valida o filtro por nome
 - ✅ Persistência de filtros após refresh
 - ✅ Limpar filtros
 
